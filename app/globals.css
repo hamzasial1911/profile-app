@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 215 35% 12%;
+    
+    --card: 0 0% 98%;
+    --card-foreground: 215 35% 12%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 35% 12%;
+    
+    --primary: 210 100% 12%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 100% 25%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 35% 45%;
+    
+    --accent: 210 100% 35%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 215 35% 85%;
+    --input: 215 35% 85%;
+    --ring: 210 100% 12%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 215 70% 8%;
+    --foreground: 210 40% 98%;
+    
+    --card: 215 70% 12%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 215 70% 8%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 210 100% 25%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 210 100% 35%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 215 70% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 210 100% 25%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 215 70% 20%;
+    --input: 215 70% 20%;
+    --ring: 210 100% 25%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+}
+
+.gradient-border {
+  @apply relative;
+}
+
+.gradient-border::before {
+  content: '';
+  @apply absolute inset-0 rounded-lg p-[2px] bg-gradient-to-r from-primary via-secondary to-accent;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px theme('colors.primary.DEFAULT'),
+                0 0 20px theme('colors.secondary.DEFAULT'),
+                0 0 30px theme('colors.accent.DEFAULT');
+  }
+  to {
+    box-shadow: 0 0 20px theme('colors.primary.DEFAULT'),
+                0 0 30px theme('colors.secondary.DEFAULT'),
+                0 0 40px theme('colors.accent.DEFAULT');
+  }
+}
+
+.mouse-gradient {
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(0, 31, 63, 0.15),
+    transparent 40%
+  );
+}
